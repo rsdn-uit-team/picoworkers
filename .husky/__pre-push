@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+TOTAL_COMMIT=$(git rev-list --count HEAD ^main)
+
+if [ $TOTAL_COMMIT -gt 1 ]
+then
+    echo "The total number of commits is exceeding the specified number (Actual $TOTAL_COMMIT, expected 1)"
+    exit 1
+fi 

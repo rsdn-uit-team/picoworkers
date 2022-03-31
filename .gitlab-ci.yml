@@ -1,0 +1,52 @@
+# https://docs.gitlab.com/12.10/ee/api/jobs.html
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  URL_DOWNLOAD_LAST_ARTIFACT: https://devops.runsystem.info/api/v4/projects/1679/jobs/artifacts/master/download?job=build
+  GITLAB_PRIVATE_TOKEN: d7ZyFv7fH5mgxekyLiaM
+
+test:
+  stage: test
+  before_script:
+    - yarn
+  script:
+    - yarn lint
+  tags:
+    - company_machine_docker_runner
+  except:
+    - master
+
+build:
+  stage: build
+  before_script:
+    - rm -rf node_modules
+    - yarn
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build/**/*
+  tags:
+    - company_machine_docker_runner
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  before_script:
+    # - rm -rf ./build
+    # - rm -rf artifact.zip
+  script:
+    # - 'curl --output artifact.zip --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" $URL_DOWNLOAD_LAST_ARTIFACT'
+    # - unzip artifact.zip
+    - cp -r ./build /home/gitlab-runner/validation-web
+  after_script:
+    - rm -rf artifact.zip
+  tags:
+    - uit-team.cf-prod-runner
+  only:
+    - master

@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+echo "${green}>>>>>>>> Eslint checking...${reset}"
+
+npm run lint
