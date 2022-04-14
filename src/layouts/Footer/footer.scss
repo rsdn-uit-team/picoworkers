@@ -1,0 +1,113 @@
+@import '../../variable.scss';
+footer {
+  background-color: #f5f7fa;
+  .footer {
+    max-width: 1170px;
+    padding: 80px 20px;
+    margin: 0 auto;
+    a {
+      text-decoration: none;
+      color: $menuItem;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+    }
+    .footer__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .footer__option {
+        display: flex;
+        .option__item {
+          position: relative;
+          padding: 7px 0;
+          box-sizing: border-box;
+          & + .option__item {
+            margin-left: 40px;
+          }
+          a {
+            border-bottom: none;
+            &::after {
+              content: '';
+              width: 0;
+              position: absolute;
+              height: 1px;
+              bottom: 0;
+              left: 50%;
+              transition: 0.15s all ease-in-out;
+              -webkit-transition: 0.15s all ease-in-out;
+              -webkit-transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+              background-color: #22ab59;
+            }
+            &:hover {
+              &::after {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .footer__row--1 {
+      padding-bottom: 70px;
+    }
+    .footer__row--2 {
+      color: #7f7e7e;
+      padding-bottom: 40px;
+      .footer__social {
+        display: flex;
+        .social__item {
+          width: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          a {
+            color: #7f7e7e;
+            &:hover {
+              color: $success;
+            }
+          }
+        }
+      }
+    }
+    .footer__text {
+      color: #7f7e7e;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  footer {
+    .footer {
+      text-align: center;
+      .footer__row {
+        display: block;
+      }
+      .footer__row--1 {
+        padding-bottom: 20px;
+        .footer__option {
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+          .option__item {
+            margin: 10px;
+            & + .option__item {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+      .footer__row--2 {
+        padding-bottom: 30px;
+        .footer__social {
+          padding-top: 30px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

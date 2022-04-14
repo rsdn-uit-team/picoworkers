@@ -1,0 +1,143 @@
+@import '../../variable.scss';
+header {
+  display: flex;
+  max-width: 1170px;
+  padding: 0 20px;
+  margin: 20px auto;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  a {
+    text-decoration: none;
+    color: $menuItem;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  ul {
+    list-style: none;
+  }
+  .header__menu {
+    display: flex;
+    margin: 0;
+    .button__hide {
+      display: none;
+    }
+    .menu__item {
+      position: relative;
+      margin: 0;
+      padding: 7px 0;
+      & + .menu__item {
+        margin-left: 40px;
+      }
+      a {
+        border-bottom: none;
+        &::after {
+          content: '';
+          width: 0;
+          position: absolute;
+          height: 1px;
+          bottom: 0;
+          left: 50%;
+          transition: 0.15s all ease-in-out;
+          -webkit-transition: 0.15s all ease-in-out;
+          -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+          background-color: $success;
+        }
+        &:hover {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .header__button {
+    .button__item {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    .button__login {
+      background-color: transparent;
+      color: $success;
+    }
+    .button__signup {
+      background-color: $success;
+      color: #ffffff;
+    }
+    .button__show {
+      display: none;
+      margin-left: 20px;
+      height: 35px;
+      width: 35px;
+      background-color: transparent;
+      border: 1px solid $menuButton;
+      color: $menuButton;
+      cursor: pointer;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  header {
+    .header__menu {
+      z-index: 10000;
+      box-sizing: border-box;
+      flex-direction: column;
+      padding: 30px;
+      position: fixed;
+      width: 300px;
+      height: 100%;
+      top: 0;
+      right: -300px;
+      background-color: #ffffff;
+      transition: 0.25s all ease-in-out;
+      -webkit-transition: 0.25s all ease-in-out;
+      box-shadow: 0 8px 20px 0 rgba(97,44,21,0.19);
+      .button__hide {
+        display: block;
+        background-color: transparent;
+        border: none;
+        margin-left: auto;
+        cursor: pointer;
+        font-size: 30px;
+        color: $menuButton;
+        &:hover {
+          color: $success;
+        }
+      }
+      .menu__item {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: auto;
+        & + .menu__item {
+          margin-left: 0;
+        }
+      }
+    }
+    .header__button {
+      .button__show {
+        display: inline;
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  header {
+    .header__button {
+      .button__signup {
+        display: none;
+      }
+      .button__show {
+        margin-left: 0;
+      }
+    }
+  }
+}

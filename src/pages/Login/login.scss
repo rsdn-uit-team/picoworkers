@@ -1,0 +1,41 @@
+@import '../../variable.scss';
+.login-form {
+  max-width: 400px;
+  padding: 30px 20px;
+  margin: 0 auto;
+  color: #1b1b1b;
+  .login-form__title {
+    color: $menuItem;
+  }
+  .login-form__content {
+    .content__option {
+      display: flex;
+      justify-content: space-between;
+      .option__forgot {
+        color: $success;
+      }
+    }
+    .content__button {
+      width: 100%;
+      height: 40px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: $success;
+      border: none;
+      border-radius: 1px;
+      cursor: pointer;
+      margin-top: 20px;
+      &:disabled {
+        cursor: no-drop;
+        opacity: 0.5;
+      }
+    }
+  }
+  .login-form__footer {
+    text-align: center;
+    a {
+      color: $success;
+    }
+  }
+}
