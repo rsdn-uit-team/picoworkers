@@ -1,4 +1,4 @@
-import './formInput.scss';
+import './Input.scss';
 export default function FormInput({
   handleChange,
   value,

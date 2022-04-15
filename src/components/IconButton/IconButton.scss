@@ -1,0 +1,10 @@
+@import '../../variable.scss';
+.icon-btn {
+  color: $icon;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+    color: $primary;
+  }
+}

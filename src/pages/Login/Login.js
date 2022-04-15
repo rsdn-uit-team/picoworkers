@@ -1,9 +1,11 @@
-import FormInput from 'components/FormInput';
+import Input from 'components/Input';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './login.scss';
+import Button from 'components/Button';
+import CheckBox from 'components/CheckBox';
 export default function Login() {
   const [isDisable, setIsDisable] = useState();
   const formik = useFormik({
@@ -39,32 +41,38 @@ export default function Login() {
     <form className="login-form" onSubmit={formik.handleSubmit}>
       <h2 className="login-form__title">Login</h2>
       <div className="login-form__content">
-        <FormInput
+        <Input
           name="email"
           value={formik.values.email}
           handleChange={formik.handleChange}
           error={formik.errors.email}
           touched={formik.touched.email}
-        ></FormInput>
-        <FormInput
+        ></Input>
+        <Input
           name="password"
           value={formik.values.password}
           handleChange={formik.handleChange}
           error={formik.errors.password}
           touched={formik.touched.password}
-        ></FormInput>
+        ></Input>
         <div className="content__option">
-          <div className="option__remember">
-            <input type="checkbox" name="remember" id="login-remember" />
+          <CheckBox label="Remember me" name="remember" />
+          {/* <div className="option__remember">
+            <input type="checkbox"id="login-remember" />
             <label htmlFor="login-remember">Remember me</label>
-          </div>
+          </div> */}
           <NavLink className="option__forgot" to="#">
             Forgot Password?
           </NavLink>
         </div>
-        <button className="content__button" type="submit" disabled={isDisable}>
+        <Button
+          variant="btn contained content__button"
+          size="14px"
+          disabled={isDisable}
+          color="success"
+        >
           LOGIN
-        </button>
+        </Button>
         <p className="login-form__footer">
           <span>New to Picoworkers?</span>
           <NavLink to="#">Create an account</NavLink>

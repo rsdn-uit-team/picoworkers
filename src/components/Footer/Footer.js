@@ -5,12 +5,9 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer">
-        <div className="footer__row footer__row--1">
+        <div className="footer__row footer__row--header">
           <NavLink className="footer__logo" to="/">
-            <img
-              src="https://picoworkers.com/assets/images/logo.svg"
-              alt="picoworkers"
-            />
+            <img src="./assets/images/logo.svg" alt="picoworkers" />
           </NavLink>
           <ul className="footer__option">
             <li className="option__item">
@@ -33,7 +30,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="footer__row footer__row--2">
+        <div className="footer__row footer__row--content">
           <p>@ 2022 Picoworkers.com. All Rights Reserved</p>
           <ul className="footer__social">
             <li className="social__item">

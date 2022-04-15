@@ -1,17 +1,17 @@
 @import '../../variable.scss';
 header {
   display: flex;
-  max-width: 1170px;
+  max-width: 1046px;
   padding: 0 20px;
-  margin: 20px auto;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 103px;
   a {
     text-decoration: none;
-    color: $menuItem;
-    font-weight: 500;
-    font-size: 16px;
+    color: $dark;
+    font-weight: bold;
+    font-size: 14px;
   }
   ul {
     list-style: none;
@@ -19,13 +19,13 @@ header {
   .header__menu {
     display: flex;
     margin: 0;
-    .button__hide {
+    font-weight: 500;
+    .icon__hide {
       display: none;
     }
     .menu__item {
       position: relative;
       margin: 0;
-      padding: 7px 0;
       & + .menu__item {
         margin-left: 40px;
       }
@@ -43,7 +43,7 @@ header {
           -webkit-transform: translateX(-50%);
           -ms-transform: translateX(-50%);
           transform: translateX(-50%);
-          background-color: $success;
+          background-color: $primary;
         }
         &:hover {
           &::after {
@@ -54,75 +54,69 @@ header {
     }
   }
   .header__button {
-    .button__item {
-      border: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      &:hover {
-        opacity: 0.6;
-      }
-    }
     .button__login {
-      background-color: transparent;
-      color: $success;
+      margin-right: 20px;
+      font-weight: 400;
+      padding: 6px 12px;
     }
     .button__signup {
-      background-color: $success;
-      color: #ffffff;
+      background-color: $primary;
+      color: $white;
     }
     .button__show {
       display: none;
+      padding: 6.8px 9px;
+      line-height: 1;
       margin-left: 20px;
-      height: 35px;
-      width: 35px;
-      background-color: transparent;
-      border: 1px solid $menuButton;
-      color: $menuButton;
-      cursor: pointer;
-      i {
-        font-size: 20px;
-      }
+      color: $icon;
+      border: 1px solid $borderIcon;
     }
   }
 }
 @media screen and (max-width: 992px) {
   header {
+    height: 73px;
     .header__menu {
       z-index: 10000;
       box-sizing: border-box;
       flex-direction: column;
-      padding: 30px;
+      font-weight: 300;
       position: fixed;
       width: 300px;
       height: 100%;
       top: 0;
+      padding: 0;
       right: -300px;
-      background-color: #ffffff;
+      background-color: $white;
       transition: 0.25s all ease-in-out;
       -webkit-transition: 0.25s all ease-in-out;
       box-shadow: 0 8px 20px 0 rgba(97,44,21,0.19);
-      .button__hide {
-        display: block;
-        background-color: transparent;
-        border: none;
+      .icon__hide {
+        display: inline;
         margin-left: auto;
-        cursor: pointer;
-        font-size: 30px;
-        color: $menuButton;
-        &:hover {
-          color: $success;
-        }
+        padding: 20px;
       }
       .menu__item {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin: 8px 20px;
         margin-right: auto;
+        a {
+          font-weight: 400;
+        }
         & + .menu__item {
-          margin-left: 0;
+          margin-left: 20px;
         }
       }
     }
     .header__button {
+      display: flex;
+      align-items: center;
+      .button__login {
+        padding: 6px 8px;
+        margin-right: 10px;
+      }
+      .button__signup {
+        padding: 6px 8px;
+      }
       .button__show {
         display: inline;
       }
@@ -132,12 +126,13 @@ header {
 @media screen and (max-width: 400px) {
   header {
     .header__button {
-      .button__signup {
-        display: none;
+      .button__login {
+        margin-right: 0;
       }
       .button__show {
-        margin-left: 0;
+        margin-left: 5px;
       }
     }
   }
+  
 }

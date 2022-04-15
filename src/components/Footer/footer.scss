@@ -1,15 +1,14 @@
 @import '../../variable.scss';
 footer {
-  background-color: #f5f7fa;
+  background-color: $backgroundFooter;
   .footer {
-    max-width: 1170px;
+    max-width: 1086px;
     padding: 80px 20px;
     margin: 0 auto;
+    box-sizing: border-box;
     a {
       text-decoration: none;
-      color: $menuItem;
-      font-weight: 500;
-      font-size: 16px;
+      color: $dark;
     }
     ul {
       list-style: none;
@@ -19,10 +18,14 @@ footer {
       justify-content: space-between;
       align-items: center;
       .footer__option {
+        margin: 0;
         display: flex;
+      }
+    }
+    .footer__row--header {
+      padding-bottom: 50px;
         .option__item {
           position: relative;
-          padding: 7px 0;
           box-sizing: border-box;
           & + .option__item {
             margin-left: 40px;
@@ -41,7 +44,7 @@ footer {
               -webkit-transform: translateX(-50%);
               -ms-transform: translateX(-50%);
               transform: translateX(-50%);
-              background-color: #22ab59;
+              background-color: $primary;
             }
             &:hover {
               &::after {
@@ -50,32 +53,35 @@ footer {
             }
           }
         }
+    }
+    .footer__row--content {
+      color: $gray;
+      p {
+        margin: 0;
       }
-    }
-    .footer__row--1 {
-      padding-bottom: 70px;
-    }
-    .footer__row--2 {
-      color: #7f7e7e;
-      padding-bottom: 40px;
       .footer__social {
         display: flex;
+        margin: 0;
         .social__item {
           width: 50px;
           display: flex;
           justify-content: center;
           align-items: center;
           a {
-            color: #7f7e7e;
+            color: $gray;
+            padding: 6px 10px;
             &:hover {
-              color: $success;
+              color: $primary;
             }
           }
         }
       }
     }
     .footer__text {
-      color: #7f7e7e;
+      margin: 0;
+      margin-top: 16px;
+      color: $gray;
+      font-size: 12px;
     }
   }
 }
@@ -87,7 +93,7 @@ footer {
       .footer__row {
         display: block;
       }
-      .footer__row--1 {
+      .footer__row--header {
         padding-bottom: 20px;
         .footer__option {
           flex-direction: column;
@@ -101,7 +107,7 @@ footer {
           }
         }
       }
-      .footer__row--2 {
+      .footer__row--content {
         padding-bottom: 30px;
         .footer__social {
           padding-top: 30px;
