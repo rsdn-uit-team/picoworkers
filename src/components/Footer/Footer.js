@@ -31,7 +31,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer__row footer__row--content">
-          <p>@ 2022 Picoworkers.com. All Rights Reserved</p>
+          <p>© 2022 Picoworkers.com. All Rights Reserved</p>
           <ul className="footer__social">
             <li className="social__item">
               <NavLink to="#">

@@ -1,10 +1,32 @@
-.checkbox{
+@import '../../variable.scss';
+.checkbox {
   display: flex;
   align-items: center;
   input {
+    width: 11px;
+    height: 11px;
+    box-sizing: content-box;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    border: 1px solid $borderCheckbox;
     margin: 0;
+    padding: 1px;
+    background-clip: content-box;
+    border-radius: 2px;
+    &:hover {
+      cursor: pointer;
+    }
+    &:checked {
+      background-color: $success;
+      border: 1px solid $success;
+      color: #fff;
+    }
   }
   label {
     margin-left: 10px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

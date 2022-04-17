@@ -38,46 +38,44 @@ export default function Login() {
     },
   });
   return (
-    <form className="login-form" onSubmit={formik.handleSubmit}>
-      <h2 className="login-form__title">Login</h2>
-      <div className="login-form__content">
-        <Input
-          name="email"
-          value={formik.values.email}
-          handleChange={formik.handleChange}
-          error={formik.errors.email}
-          touched={formik.touched.email}
-        ></Input>
-        <Input
-          name="password"
-          value={formik.values.password}
-          handleChange={formik.handleChange}
-          error={formik.errors.password}
-          touched={formik.touched.password}
-        ></Input>
-        <div className="content__option">
-          <CheckBox label="Remember me" name="remember" />
-          {/* <div className="option__remember">
-            <input type="checkbox"id="login-remember" />
-            <label htmlFor="login-remember">Remember me</label>
-          </div> */}
-          <NavLink className="option__forgot" to="#">
-            Forgot Password?
-          </NavLink>
+    <main>
+      <form className="login-form" onSubmit={formik.handleSubmit}>
+        <h2 className="login-form__title">Login</h2>
+        <div className="login-form__content">
+          <Input
+            name="email"
+            value={formik.values.email}
+            handleChange={formik.handleChange}
+            error={formik.errors.email}
+            touched={formik.touched.email}
+          ></Input>
+          <Input
+            name="password"
+            value={formik.values.password}
+            handleChange={formik.handleChange}
+            error={formik.errors.password}
+            touched={formik.touched.password}
+          ></Input>
+          <div className="content__option">
+            <CheckBox label="Remember me" name="remember" />
+            <NavLink className="option__forgot" to="#">
+              Forgot Password?
+            </NavLink>
+          </div>
+          <Button
+            variant="btn contained content__button"
+            size="14px"
+            disabled={isDisable}
+            color="success"
+          >
+            LOGIN
+          </Button>
+          <p className="login-form__footer">
+            <span>New to Picoworkers?</span>
+            <NavLink to="#">Create an account</NavLink>
+          </p>
         </div>
-        <Button
-          variant="btn contained content__button"
-          size="14px"
-          disabled={isDisable}
-          color="success"
-        >
-          LOGIN
-        </Button>
-        <p className="login-form__footer">
-          <span>New to Picoworkers?</span>
-          <NavLink to="#">Create an account</NavLink>
-        </p>
-      </div>
-    </form>
+      </form>
+    </main>
   );
 }

@@ -1,6 +1,7 @@
 @import '../../variable.scss';
 footer {
   background-color: $backgroundFooter;
+  margin-top: auto;
   .footer {
     max-width: 1086px;
     padding: 80px 20px;

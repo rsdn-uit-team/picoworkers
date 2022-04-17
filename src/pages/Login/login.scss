@@ -1,51 +1,55 @@
 @import '../../variable.scss';
-.login-form {
-  max-width: 400px;
-  padding: 50px 20px 80px 20px;
-  margin: 0 auto;
-  font-size: 14px;
-  .login-form__title {
-    color: $dark;
-    margin: 0;
-    margin-bottom: 26px;
-    font-size: 26.6px;
-  }
-  .login-form__content {
-    .content__option {
-      display: flex;
-      justify-content: space-between;
-      .option__forgot {
-        color: $success;
+main {
+  .login-form {
+    max-width: 400px;
+    padding: 50px 20px 80px 20px;
+    margin: 0 auto;
+    font-size: 14px;
+    .login-form__title {
+      color: $dark;
+      margin: 0;
+      margin-bottom: 26px;
+      font-size: 26.6px;
+    }
+    .login-form__content {
+      .content__option {
+        display: flex;
+        justify-content: space-between;
+        .option__forgot {
+          color: $success;
+          &:hover {
+            color: $linkHover;
+          }
+        }
+      }
+      .content__button {
+        margin-top: 24px;
+        width: 100%;
+        padding: 12px 20px;
+        &:hover {
+          background-color: $buttonHover;
+        }
+      }
+    }
+    .login-form__footer {
+      text-align: center;
+      margin: 16px 0;
+      a {
+        margin-left: 5px;
+        color: $primary;
         &:hover {
           color: $linkHover;
         }
       }
     }
-    .content__button {
-      margin-top: 24px;
-      width: 100%;
-      padding: 12px 20px;
-      &:hover {
-        background-color: $buttonHover;
-      }
-    }
-  }
-  .login-form__footer {
-    text-align: center;
-    margin: 16px 0;
-    a {
-      margin-left: 5px;
-      color: $primary;
-      &:hover {
-        color: $linkHover;
-      }
-    }
   }
 }
 @media screen and (max-width: 992px) {
-  .login__form {
-    .login-form__title {
-      font-size: 22px;
+  main {
+    .login__form {
+      .login-form__title {
+        font-size: 22px;
+      }
     }
   }
 }
