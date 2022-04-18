@@ -1,7 +1,121 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import './signup.scss';
+import Inputfield from 'components/InputFields/InputFields';
+import styled from '@emotion/styled';
+const DivSignup = styled.div`
+  padding-top: 30px;
+  width: 35%;
+  display: block;
+  margin: 0 auto;
+  @media (max-width: 767.98px) {
+    width: 80%;
+  }
+  & .error {
+    margin: 2px 0;
+    color: red;
+    font-size: 12px;
+  }
+`;
+const DivGroup = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  @media (max-width: 767.98px) {
+    flex-direction: column;
+  }
+  & .profile {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #596680;
+    width: 45%;
+    @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+  & .profile__title {
+    font-weight: 100;
+  }
+`;
+const DivItem = styled.div`
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
+  & label {
+    color: #a9adba;
+    font-weight: 600;
+  }
+  & select {
+    background-color: #f5f7fa;
+    border: none;
+    width: 100%;
+    padding: 10px 10px;
+  }
+  & select {
+    outline: none;
+  }
+`;
+const AccountType = styled.div`
+  margin-top: 10px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
+`;
+const AcceptTerms = styled.div`
+  margin-top: 20px;
+  & .accept-terms__item {
+    & input {
+      margin-right: 10px;
+    }
+    & label {
+      color: #81878b;
+    }
+  }
+`;
+const SubmitStyle = styled.input`
+  width: 100%;
+  background-color: #2ea95f;
+  padding: 10px 0;
+  color: white;
+  margin-top: 20px;
+`;
+const LoginAcc = styled.p`
+  margin-top: 10px;
+  text-align: center;
+  & a {
+    color: #2ea95f;
+    padding-left: 2px;
+  }
+`;
+const InputStyle = styled.div`
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: #a9adba;
+    font-weight: 600;
+  }
+  input {
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    background-color: #f5f7fa;
+    & :focus {
+      outline: none;
+    }
+    @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+`;
 const Signup = () => {
   const formik = useFormik({
     initialValues: {
@@ -11,10 +125,9 @@ const Signup = () => {
       confirmPassword: '',
       nickName: '',
       country: '',
-      whoAmI: '',
+      account_type: '',
       agree: false,
     },
-
     validationSchema: Yup.object({
       realName: Yup.string('Enter your name').required(
         'Không được bỏ trống trường này'
@@ -36,7 +149,7 @@ const Signup = () => {
         .required('Không được bỏ trống trường này'),
       nickName: Yup.string().required('Không được bỏ trống trường này'),
       country: Yup.string().required('Không được bỏ trống trường này'),
-      whoAmI: Yup.string().required('Không được bỏ trống trường này'),
+      account_type: Yup.string().required('Không được bỏ trống trường này'),
       agree: Yup.bool().oneOf([true], 'Vui lòng chấp nhận điều khoản'),
     }),
 
@@ -45,88 +158,76 @@ const Signup = () => {
     },
   });
   return (
-    <div className="container sign-up">
+    <DivSignup>
       <h1>Sign Up</h1>
       <form onSubmit={formik.handleSubmit}>
-        <div className="form__group">
-          <div className="form__item">
-            <label htmlFor="real-name">
-              Real name (for internal verific. only)
-            </label>
-            <input
+        <DivGroup>
+          <InputStyle>
+            <Inputfield
+              label="Real name (for internal verific. only)"
               id="real-name"
-              type="text"
               name="realName"
-              placeholder="Type your response here"
-              value={formik.values.realName}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.realName && formik.touched.realName && (
-              <p className="error">{formik.errors.realName}</p>
-            )}
-          </div>
-          <div className="form__item">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
               type="text"
+              value={formik.values.realName}
+              onchange={formik.handleChange}
+              errors={formik.errors.realName}
+              touched={formik.touched.realName}
+            />
+          </InputStyle>
+          <InputStyle>
+            <Inputfield
+              label="Email"
+              id="email"
               name="email"
-              placeholder="Type your response here"
+              type="text"
               value={formik.values.email}
-              onChange={formik.handleChange}
+              onchange={formik.handleChange}
+              errors={formik.errors.email}
+              touched={formik.touched.email}
             />
-            {formik.errors.email && formik.touched.email && (
-              <p className="error">{formik.errors.email}</p>
-            )}
-          </div>
-        </div>
-        <div className="form__group">
-          <div className="form__item">
-            <label htmlFor="password">Password</label>
-            <input
+          </InputStyle>
+        </DivGroup>
+        <DivGroup>
+          <InputStyle>
+            <Inputfield
+              label="Password"
               id="password"
-              type="password"
               name="password"
-              placeholder="Type your response here"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <p className="error">{formik.errors.password}</p>
-            )}
-          </div>
-          <div className="form__item">
-            <label htmlFor="confirmpass">Confirm Password</label>
-            <input
-              id="confirmpass"
               type="password"
-              name="confirmPassword"
-              placeholder="Type your response here"
-              value={formik.values.confirmPassword}
-              onChange={formik.handleChange}
+              value={formik.values.password}
+              onchange={formik.handleChange}
+              errors={formik.errors.password}
+              touched={formik.touched.password}
             />
-            {formik.errors.confirmPassword &&
-              formik.touched.confirmPassword && (
-                <p className="error">{formik.errors.confirmPassword}</p>
-              )}
-          </div>
-        </div>
-        <div className="form__group">
-          <div className="form__item">
-            <label htmlFor="nickname">Nickname</label>
-            <input
-              id="nickname"
+          </InputStyle>
+          <InputStyle>
+            <Inputfield
+              label="Confirm Password"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={formik.values.confirmPassword}
+              onchange={formik.handleChange}
+              errors={formik.errors.confirmPassword}
+              touched={formik.touched.confirmPassword}
+            />
+          </InputStyle>
+        </DivGroup>
+        <DivGroup>
+          <InputStyle>
+            <Inputfield
+              label="Nickname"
+              id="nickName"
               name="nickName"
               type="text"
-              placeholder="Type your response here"
               value={formik.values.nickName}
-              onChange={formik.handleChange}
+              onchange={formik.handleChange}
+              errors={formik.errors.nickName}
+              touched={formik.touched.nickName}
             />
-            {formik.errors.nickName && formik.touched.nickName && (
-              <p className="error">{formik.errors.nickName}</p>
-            )}
-          </div>
-          <div className="form__item">
+          </InputStyle>
+
+          <DivItem>
             <label>Select Country</label>
             <select
               name="country"
@@ -142,9 +243,9 @@ const Signup = () => {
             {formik.errors.country && formik.touched.country && (
               <p className="error">{formik.errors.country}</p>
             )}
-          </div>
-        </div>
-        <div className="form__group">
+          </DivItem>
+        </DivGroup>
+        <DivGroup>
           <h5 className="profile">
             Select your profile type:
             <p className="profile__title">
@@ -152,33 +253,33 @@ const Signup = () => {
               them later
             </p>
           </h5>
-          <div className="whoami">
-            <div className="whoami__item">
+          <AccountType>
+            <div className="account_type__item">
               <input
                 type="radio"
                 id="check-worker"
-                name="whoAmI"
+                name="account_type"
                 value="worker"
                 onChange={formik.handleChange}
               />
               <label htmlFor="check-worker"> I'm a Worker</label>
             </div>
-            <div className="whoami__item">
+            <div className="account_type__item">
               <input
                 type="radio"
                 id="check-employer"
-                name="whoAmI"
+                name="account_type"
                 value="employer"
                 onChange={formik.handleChange}
               />
               <label htmlFor="check-employer"> I'm an Employer</label>
             </div>
-            {formik.errors.whoAmI && formik.touched.whoAmI && (
-              <p className="error">{formik.errors.whoAmI}</p>
+            {formik.errors.account_type && formik.touched.account_type && (
+              <p className="error">{formik.errors.account_type}</p>
             )}
-          </div>
-        </div>
-        <div className="accept-terms">
+          </AccountType>
+        </DivGroup>
+        <AcceptTerms>
           <div className="accept-terms__item">
             <input
               type="checkbox"
@@ -209,13 +310,13 @@ const Signup = () => {
               Send me news, events and offers via periodic email.
             </label>
           </div>
-        </div>
-        <input type="submit" value="SIGN UP" />
+        </AcceptTerms>
+        <SubmitStyle type="submit" value="SIGN UP" />
       </form>
-      <p className="login-acc">
+      <LoginAcc>
         Have an account? <a href="/#">Login now</a>
-      </p>
-    </div>
+      </LoginAcc>
+    </DivSignup>
   );
 };
 
