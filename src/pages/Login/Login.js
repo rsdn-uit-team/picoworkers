@@ -1,11 +1,11 @@
-import Input from 'components/Input';
+import Input from 'components/Input/Input';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import './login.scss';
-import Button from 'components/Button';
-import CheckBox from 'components/CheckBox';
+import './Login.scss';
+import Button from 'components/Button/Button';
+import CheckBox from 'components/CheckBox/CheckBox';
 export default function Login() {
   const [isDisable, setIsDisable] = useState();
   const formik = useFormik({
@@ -45,26 +45,26 @@ export default function Login() {
           <Input
             name="email"
             value={formik.values.email}
-            handleChange={formik.handleChange}
+            onChange={formik.handleChange}
             error={formik.errors.email}
             touched={formik.touched.email}
           ></Input>
           <Input
             name="password"
             value={formik.values.password}
-            handleChange={formik.handleChange}
+            onChange={formik.handleChange}
             error={formik.errors.password}
             touched={formik.touched.password}
           ></Input>
           <div className="content__option">
             <CheckBox label="Remember me" name="remember" />
-            <NavLink className="option__forgot" to="#">
+            <NavLink className="option__forgot" to="/forgot-password">
               Forgot Password?
             </NavLink>
           </div>
           <Button
             variant="btn contained content__button"
-            size="14px"
+            size="large"
             disabled={isDisable}
             color="success"
           >

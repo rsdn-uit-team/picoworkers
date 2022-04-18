@@ -1,6 +1,5 @@
-@import '../../variable.scss';
 footer {
-  background-color: $backgroundFooter;
+  background-color: var(--backgroundFooter);
   margin-top: auto;
   .footer {
     max-width: 1086px;
@@ -9,7 +8,7 @@ footer {
     box-sizing: border-box;
     a {
       text-decoration: none;
-      color: $dark;
+      color: var(--dark);
     }
     ul {
       list-style: none;
@@ -25,38 +24,38 @@ footer {
     }
     .footer__row--header {
       padding-bottom: 50px;
-        .option__item {
-          position: relative;
-          box-sizing: border-box;
-          & + .option__item {
-            margin-left: 40px;
+      .option__item {
+        position: relative;
+        box-sizing: border-box;
+        & + .option__item {
+          margin-left: 40px;
+        }
+        a {
+          border-bottom: none;
+          &::after {
+            content: '';
+            width: 0;
+            position: absolute;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            transition: 0.15s all ease-in-out;
+            -webkit-transition: 0.15s all ease-in-out;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            background-color: var(--primary);
           }
-          a {
-            border-bottom: none;
+          &:hover {
             &::after {
-              content: '';
-              width: 0;
-              position: absolute;
-              height: 1px;
-              bottom: 0;
-              left: 50%;
-              transition: 0.15s all ease-in-out;
-              -webkit-transition: 0.15s all ease-in-out;
-              -webkit-transform: translateX(-50%);
-              -ms-transform: translateX(-50%);
-              transform: translateX(-50%);
-              background-color: $primary;
-            }
-            &:hover {
-              &::after {
-                width: 100%;
-              }
+              width: 100%;
             }
           }
         }
+      }
     }
     .footer__row--content {
-      color: $gray;
+      color: var(--gray);
       p {
         margin: 0;
       }
@@ -69,10 +68,10 @@ footer {
           justify-content: center;
           align-items: center;
           a {
-            color: $gray;
+            color: var(--gray);
             padding: 6px 10px;
             &:hover {
-              color: $primary;
+              color: var(--primary);
             }
           }
         }
@@ -81,7 +80,7 @@ footer {
     .footer__text {
       margin: 0;
       margin-top: 16px;
-      color: $gray;
+      color: var(--gray);
       font-size: 12px;
     }
   }

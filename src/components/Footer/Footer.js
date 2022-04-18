@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './footer.scss';
+import './Footer.scss';
 export default function Footer() {
   return (
     <footer>
@@ -20,7 +20,7 @@ export default function Footer() {
               <NavLink to="#">Affiliate Program</NavLink>
             </li>
             <li className="option__item">
-              <NavLink to="#">Freelance & Earn</NavLink>
+              <NavLink to="#">Freelance {'&'} Earn</NavLink>
             </li>
             <li className="option__item">
               <NavLink to="#">Terms of Use</NavLink>

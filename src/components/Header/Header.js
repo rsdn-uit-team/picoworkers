@@ -1,8 +1,8 @@
-import Button from 'components/Button';
-import IconButton from 'components/IconButton';
+import Button from 'components/Button/Button';
+import IconButton from 'components/IconButton/IconButton';
 import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import './header.scss';
+import './Header.scss';
 export default function Header() {
   const menu = useRef(null);
   const showMenu = () => {
@@ -21,7 +21,7 @@ export default function Header() {
           <IconButton
             name="icon__hide"
             aria_label="fal fa-times"
-            size="25px"
+            size="medium"
             onClick={() => {
               hideMenu();
             }}

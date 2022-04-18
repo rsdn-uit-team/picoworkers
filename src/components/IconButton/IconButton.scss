@@ -1,10 +1,12 @@
-@import '../../variable.scss';
 .icon-btn {
-  color: $icon;
+  color: var(--icon);
   border: none;
   cursor: pointer;
   background-color: transparent;
   &:hover {
-    color: $primary;
+    color: var(--primary);
+  }
+  i.text-medium {
+    font-size: 28px;
   }
 }

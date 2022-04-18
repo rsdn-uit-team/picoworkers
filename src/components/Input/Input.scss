@@ -1,8 +1,7 @@
-@import '../../variable.scss';
 .form-group {
   margin-bottom: 24px;
   .form-label {
-    color: $label;
+    color: var(--label);
     text-transform: capitalize;
     font-weight: 500;
     line-height: 1.1716666667;
@@ -14,20 +13,20 @@
     margin-top: 8px;
     padding: 10px 11px 12px;
     outline: none;
-    background-color: $input;
+    background-color: var(--input);
     border-radius: 2px;
     box-sizing: border-box;
     border: 1px solid transparent;
     line-height: 1.333333;
     &:focus {
-      border-color: rgba(0,0,0,0);
+      border-color: rgba(0, 0, 0, 0);
       outline: 0;
-      -webkit-box-shadow: inset 0 -1px 0 0 $primary;
-      box-shadow: inset 0 -1px 0 0 $primary;
+      -webkit-box-shadow: inset 0 -1px 0 0 var(--primary);
+      box-shadow: inset 0 -1px 0 0 var(--primary);
     }
   }
   .form-error {
-    color: $danger;
+    color: var(--danger);
     font-size: 14px;
   }
 }
