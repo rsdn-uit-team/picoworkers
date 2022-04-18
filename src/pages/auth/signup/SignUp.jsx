@@ -213,7 +213,7 @@ const Signup = () => {
         <input type="submit" value="SIGN UP" />
       </form>
       <p className="login-acc">
-        Have an account? <a>Login now</a>
+        Have an account? <a href="/#">Login now</a>
       </p>
     </div>
   );
