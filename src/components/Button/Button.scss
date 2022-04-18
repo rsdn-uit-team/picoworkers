@@ -1,0 +1,62 @@
+@import '../../variable.scss';
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 3px;
+  line-height: 1.33333333333;
+  border: 1px solid transparent;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  .start-icon {
+    margin-right: 10px;
+  }
+  .end-icon {
+    margin-left: 10px;
+  }
+  &.text {
+    border: transparent;
+    background-color: transparent;
+  }
+  &.contained {
+    border: $primary;
+    background-color: $primary;
+    color: $white;
+  }
+  &.outlined {
+    border: 1px solid $light;
+    color: $light;
+    background-color: transparent;
+  }
+  &.text-primary {
+    color: $primary;
+  }
+  &.text-success {
+    color: $success;
+  }
+  &.contained.text-primary {
+    background-color: $primary;
+    color: $white;
+  }
+  &.contained.text-success {
+    background-color: $success;
+    color: $white;
+  }
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.5;
+  }
+  &.text-icon {
+    color: $icon;
+    font-weight: 400;
+    padding: 6px 12px;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
