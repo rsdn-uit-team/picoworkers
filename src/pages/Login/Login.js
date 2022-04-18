@@ -1,11 +1,38 @@
 import Input from 'components/Input/Input';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import './Login.scss';
 import Button from 'components/Button/Button';
 import CheckBox from 'components/CheckBox/CheckBox';
+import styled from '@emotion/styled';
+import Link from 'components/Link/Link';
+const FormField = styled.form`
+  max-width: 400px;
+  padding: 50px 20px 80px 20px;
+  margin: 0 auto;
+  font-size: 14px;
+  @media (max-width: 992px) {
+    padding-top: 80px;
+  }
+`;
+const H2Field = styled.h2`
+  color: var(--dark);
+  margin: 0;
+  margin-bottom: 26px;
+  font-size: 26.6px;
+  font-weight: 700;
+  @media (max-width: 992px) {
+    font-size: 23px;
+  }
+`;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const TextField = styled.p`
+  text-align: center;
+  margin: 16px 0;
+`;
 export default function Login() {
   const [isDisable, setIsDisable] = useState();
   const formik = useFormik({
@@ -39,43 +66,41 @@ export default function Login() {
   });
   return (
     <main>
-      <form className="login-form" onSubmit={formik.handleSubmit}>
-        <h2 className="login-form__title">Login</h2>
-        <div className="login-form__content">
-          <Input
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.errors.email}
-            touched={formik.touched.email}
-          ></Input>
-          <Input
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.errors.password}
-            touched={formik.touched.password}
-          ></Input>
-          <div className="content__option">
-            <CheckBox label="Remember me" name="remember" />
-            <NavLink className="option__forgot" to="/forgot-password">
-              Forgot Password?
-            </NavLink>
-          </div>
-          <Button
-            variant="btn contained content__button"
-            size="large"
-            disabled={isDisable}
-            color="success"
-          >
-            LOGIN
-          </Button>
-          <p className="login-form__footer">
-            <span>New to Picoworkers?</span>
-            <NavLink to="#">Create an account</NavLink>
-          </p>
-        </div>
-      </form>
+      <FormField onSubmit={formik.handleSubmit}>
+        <H2Field>Login</H2Field>
+        <Input
+          name="email"
+          type="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.errors.email}
+          touched={formik.touched.email}
+        ></Input>
+        <Input
+          name="password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.errors.password}
+          touched={formik.touched.password}
+        ></Input>
+        <Container>
+          <CheckBox label="Remember me" name="remember" id="remember" />
+          <Link to="/forgot-password">Forgot Password?</Link>
+        </Container>
+        <Button
+          variant="btn contained content__button"
+          size="large"
+          disabled={isDisable}
+          color="success"
+        >
+          LOGIN
+        </Button>
+        <TextField>
+          <span>New to Picoworkers?</span>
+          <Link to="#">Create an account</Link>
+        </TextField>
+      </FormField>
     </main>
   );
 }
