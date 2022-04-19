@@ -1,142 +1,255 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-const ButtonField = styled.button`
-  display: inline-block;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  background-color: transparent;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  font-family: inherit;
-  cursor: pointer;
-  box-sizing: border-box;
-  ${(props) =>
-    props.variant === 'text'
-      ? 'border: 1px solid transparent;background-color: transparent;'
-      : (props) =>
-          props.variant === 'contained'
-            ? 'border: 1px solid var(--primary);background-color: var(--primary);color: var(--white);'
-            : (props) =>
-                props.variant === 'outlined'
-                  ? 'border: 1px solid var(--light);color: var(--light);background-color: transparent;'
-                  : ''}
-  ${(props) =>
-    props.color === 'primary'
-      ? 'color: var(--primary);'
-      : props.color === 'success'
-      ? 'color: var(--success);'
-      : ''}
-  ${(props) =>
-    props.variant === 'contained' && props.color === 'primary'
-      ? 'background-color: var(--primary);color: var(--white);'
-      : props.variant === 'contained' && props.color === 'success'
-      ? 'background-color: var(--success);color: var(--white);'
-      : ''}
-  ${(props) => (props.disabled ? 'cursor: no-drop;opacity: 0.5;' : '')}
-  ${(props) =>
-    props.size === 'medium'
-      ? 'padding: 8px 20px;font-size: 13px;@media screen and (max-width: 992px) {padding: 6px 8px !important;}'
-      : props.size === 'large'
-      ? 'padding: 12px 20px;font-size: 14px;'
-      : ''}
-  ${(props) =>
-    props.display === 'block'
-      ? 'margin-top: 24px;width: 100%;&:hover{background-color: var(--buttonHover);}'
-      : ''}
-`;
-const LinkRoot = styled(({ children, ...props }) => (
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
+const ButtonRoot = styled.button(
+  {
+    backgroundColor: 'transparent',
+    border: '1px solid transparent',
+    outline: 'none',
+    padding: '12px 20px',
+    color: '#22ab59',
+    fontSize: 14,
+    fontFamily: 'inherit',
+    transition: 'all .25s',
+    cursor: 'pointer',
+  },
+  ({ color, size, variant, fullWidth, radius, padding, disabled }) => ({
+    width: fullWidth ? '100%' : 'auto',
+    borderRadius: radius || 0,
+    ...(variant === 'default' && {
+      ...(color === 'success' && {
+        color: 'var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+      }),
+      ...(color === 'info' && {
+        color: 'var(--blue)',
+      }),
+    }),
+    ...(variant === 'contained' && {
+      ...(color === 'primary' && {
+        backgroundColor: 'var(--primary)',
+        border: '1px solid var(--primary)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+      ...(color === 'success' && {
+        backgroundColor: 'var(--success)',
+        border: '1px solid var(--success)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+    }),
+    ...(variant === 'outlined' && {
+      border: '1px solid var(--primary)',
+      color: 'var(--primary)',
+      ...(color === 'success' && {
+        color: 'var(--success)',
+        border: '1px solid var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+        border: '1px solid var(--danger)',
+      }),
+    }),
+    ...(size === 'small' && {
+      fontSize: 12,
+    }),
+    ...(size === 'medium' && {
+      fontSize: 14,
+    }),
+    ...(size === 'large' && {
+      fontSize: 16,
+    }),
+    ...(padding === 'small' && {
+      padding: '6px 8px',
+    }),
+    ...(padding === 'medium' && {
+      padding: '8px 20px',
+      '@media(max-width: 992px)': {
+        padding: '6px 8px',
+      },
+    }),
+    ...(padding === 'large' && {
+      padding: '12px 20px',
+    }),
+    ...(disabled && {
+      cursor: 'no-drop',
+      opacity: 0.5,
+    }),
+  })
+);
+
+const LinkRoot = styled(({ fullWidth, children, ...props }) => (
   <NavLink {...props}>{children}</NavLink>
-))`
-  display: inline-block;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  font-family: inherit;
-  cursor: pointer;
-  box-sizing: border-box;
-  text-decoration: none;
-  line-height: 1.33333;
-  ${(props) =>
-    props.variant === 'text'
-      ? 'border: 1px solid transparent;background-color: transparent;'
-      : (props) =>
-          props.variant === 'contained'
-            ? 'border: 1px solid var(--primary);background-color: var(--primary);color: var(--white);'
-            : (props) =>
-                props.variant === 'outlined'
-                  ? 'border: 1px solid var(--light);color: var(--light);background-color: transparent;'
-                  : ''}
-  ${(props) =>
-    props.color === 'primary'
-      ? 'color: var(--primary);'
-      : props.color === 'success'
-      ? 'color: var(--success);'
-      : props.color === 'icon'
-      ? 'color: var(--icon);&:hover{color:var(--primary);}'
-      : ''}
-  ${(props) =>
-    props.variant === 'contained' && props.color === 'primary'
-      ? 'background-color: var(--primary);color: var(--white);'
-      : props.variant === 'contained' && props.color === 'success'
-      ? 'background-color: var(--success);color: var(--white);'
-      : ''}
-  ${(props) => (props.disabled ? 'cursor: no-drop;opacity: 0.5;' : '')}
-  ${(props) =>
-    props.size === 'medium'
-      ? 'padding: 8px 20px;font-size: 13px;@media screen and (max-width: 992px) {padding: 6px 8px !important;}'
-      : props.size === 'large'
-      ? 'padding: 12px 20px;font-size: 14px;i{font-size: 16px}'
-      : ''}
-  ${(props) =>
-    props.display === 'block'
-      ? 'margin-top: 24px;width: 100%;&:hover{background-color: var(--buttonHover);}'
-      : ''}
-`;
+))(
+  {
+    backgroundColor: 'transparent',
+    border: '1px solid transparent',
+    outline: 'none',
+    padding: '12px 20px',
+    color: '#22ab59',
+    fontSize: 14,
+    transition: 'all .25s',
+    cursor: 'pointer',
+  },
+  ({ color, size, variant, fullWidth, radius, padding, disabled }) => ({
+    textDecoration: 'none',
+    width: fullWidth ? '100%' : 'auto',
+    borderRadius: radius || 0,
+    ...(variant === 'default' && {
+      ...(color === 'success' && {
+        color: 'var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+      }),
+      ...(color === 'info' && {
+        color: 'var(--blue)',
+      }),
+    }),
+    ...(variant === 'contained' && {
+      ...(color === 'primary' && {
+        backgroundColor: 'var(--primary)',
+        border: '1px solid var(--primary)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+      ...(color === 'success' && {
+        backgroundColor: 'var(--success)',
+        border: '1px solid var(--success)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+    }),
+    ...(variant === 'outlined' && {
+      border: '1px solid var(--primary)',
+      color: 'var(--primary)',
+      ...(color === 'success' && {
+        color: 'var(--success)',
+        border: '1px solid var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+        border: '1px solid var(--danger)',
+      }),
+    }),
+    ...(size === 'small' && {
+      fontSize: 12,
+    }),
+    ...(size === 'medium' && {
+      fontSize: 14,
+    }),
+    ...(size === 'large' && {
+      fontSize: 16,
+    }),
+    ...(padding === 'small' && {
+      padding: '6px 8px',
+    }),
+    ...(padding === 'medium' && {
+      padding: '8px 20px',
+    }),
+    ...(padding === 'large' && {
+      padding: '12px 20px',
+    }),
+    ...(disabled && {
+      cursor: 'no-drop',
+      opacity: 0.5,
+    }),
+  })
+);
 const StartIcon = styled('i')`
   margin-right: 10px;
 `;
 const EndIcon = styled('i')`
   margin-left: 10px;
 `;
-export default function Button({
-  variant,
-  children,
-  size = 'medium',
-  disabled = false,
-  color = 'primary',
-  display,
-  startIcon,
-  endIcon,
-  ...props
-}) {
-  return !props.to ? (
-    <ButtonField
-      variant={variant}
-      color={color}
-      size={size}
-      display={display}
-      disabled={disabled}
-      {...props}
-    >
-      {startIcon ? <StartIcon className={startIcon}></StartIcon> : <></>}
-      {children}
-      {endIcon ? <EndIcon className={endIcon}></EndIcon> : <></>}
-    </ButtonField>
-  ) : (
-    <LinkRoot
-      variant={variant}
-      color={color}
-      size={size}
-      display={display}
-      disabled={disabled}
-      {...props}
-    >
-      {startIcon ? <StartIcon className={startIcon}></StartIcon> : <></>}
-      {children}
-      {endIcon ? <EndIcon className={endIcon}></EndIcon> : <></>}
-    </LinkRoot>
-  );
-}
+const Button = forwardRef(
+  (
+    {
+      variant,
+      children,
+      size,
+      disabled,
+      color,
+      padding,
+      fullWidth,
+      radius,
+      startIcon,
+      endIcon,
+      ...props
+    },
+    ref
+  ) =>
+    !props.to ? (
+      <ButtonRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        fullWidth={fullWidth}
+        disabled={disabled}
+        padding={padding}
+        radius={radius}
+        {...props}
+      >
+        {startIcon ? <StartIcon>{startIcon}</StartIcon> : <></>}
+        {children}
+        {endIcon ? <EndIcon>{endIcon}</EndIcon> : <></>}
+      </ButtonRoot>
+    ) : (
+      <LinkRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        fullWidth={fullWidth}
+        padding={padding}
+        disabled={disabled}
+        radius={radius}
+        {...props}
+      >
+        {startIcon ? <StartIcon>{startIcon}</StartIcon> : <></>}
+        {children}
+        {endIcon ? <EndIcon>{endIcon}</EndIcon> : <></>}
+      </LinkRoot>
+    )
+);
+
+Button.propTypes = {
+  variant: PropTypes.oneOf(['default', 'contained', 'outlined']),
+  padding: PropTypes.oneOf(['small', 'medium', 'large']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'success',
+    'error',
+    'info',
+    'inherit',
+  ]),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fullWidth: PropTypes.bool,
+  radius: PropTypes.number,
+};
+Button.defaultProps = {
+  variant: 'default',
+  color: 'primary',
+  size: 'medium',
+  fullWidth: false,
+  padding: 'medium',
+};
+export default Button;

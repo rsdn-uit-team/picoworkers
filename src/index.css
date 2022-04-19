@@ -2,7 +2,7 @@
   --default: #1b1b1b;
   --label: #a8b0bf;
   --input: #f5f7fa;
-  --icon: #686d77;
+  --colorIcon: #686d77;
   --borderIcon: rgba(0, 0, 0, 0.1);
   --borderCheckbox: #d3dae6;
   --buttonHover: #1e964e;
@@ -21,11 +21,11 @@
   --cyan: #49ffc3;
   --white: #fff;
   --gray-dark: #343a40;
-  --secondary: #e7faef;
+  --secondary: #686d77;
   --danger: #e63e46;
   --dark: #203259;
-  --primary: #15d164;
-  --success: #22ab59;
+  --primary: #22ab59;
+  --success: #15d164;
   --info: #17a2b8;
   --warning: #de9100;
   --light: #f2f4f7;

@@ -1,11 +1,14 @@
 import Button from 'components/Button/Button';
 // import useLocalStorage from "hooks/useLocalStorage";
 
+import Button from 'components/Button/Button';
+
 export default function Demo() {
   // const [auth, setAuth] = useLocalStorage("auth", {});
 
   return (
     <>
+<<<<<<< HEAD
       <p>Button Default</p>
       <div>
         <Button>Default</Button>
@@ -43,6 +46,30 @@ export default function Demo() {
           Radius 10px
         </Button>
       </div>
+=======
+      It's work!
+      <Button
+        variant="contained"
+        size="large"
+        startIcon={<i className="fas fa-address-book"></i>}
+        endIcon={<i className="fas fa-address-book"></i>}
+        color="success"
+        radius={5}
+      >
+        abc
+      </Button>
+      <Button
+        variant="outlined"
+        color="success"
+        startIcon={<i className="fas fa-address-book"></i>}
+        endIcon={<i className="fas fa-address-book"></i>}
+        to="abc"
+        // padding="large"
+        size="small"
+      >
+        abc
+      </Button>
+>>>>>>> fb35e89 (fix: styling)
     </>
   );
 }
