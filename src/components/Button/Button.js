@@ -1,104 +1,142 @@
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
-
-const ButtonRoot = styled.button(
-  {
-    backgroundColor: 'transparent',
-    border: '1px solid transparent',
-    outline: 'none',
-    padding: '12px 20px',
-    color: '#22ab59',
-    fontSize: 14,
-    transition: 'all .25s',
-    cursor: 'pointer',
-  },
-  ({ fullWidth, radius, variant, color }) => ({
-    width: fullWidth ? '100%' : 'auto',
-    borderRadius: radius || 0,
-    // contained
-    ...(variant === 'contained' && {
-      ...(color === 'primary' && {
-        backgroundColor: '#22ab59',
-        border: '1px solid #22ab59',
-        ':hover': {
-          backgroundColor: '#1e964e',
-          border: '1px solid #1e964e',
-        },
-      }),
-      color: '#fff',
-      ...(color === 'success' && {
-        backgroundColor: '#15d164',
-        border: '1px solid #15d164',
-      }),
-      ...(color === 'error' && {
-        backgroundColor: 'tomato',
-        border: '1px solid tomato',
-      }),
-    }),
-    // outlined
-    ...(variant === 'outlined' && {
-      border: '1px solid #22ab59',
-      color: '#22ab59',
-      ...(color === 'success' && {
-        color: '#15d164',
-        border: '1px solid #15d164',
-      }),
-      ...(color === 'error' && {
-        color: 'tomato',
-        border: '1px solid tomato',
-      }),
-    }),
-    // default
-    ...(variant === 'default' && {
-      ...(color === 'success' && {
-        color: '#15d164',
-      }),
-      ...(color === 'error' && {
-        color: 'tomato',
-      }),
-      ...(color === 'info' && {
-        color: 'blue',
-      })
-    }),
-  })
-);
-
-const Button = forwardRef(
-  ({ children, variant, size, color, fullWidth, ...props }, ref) => (
-    <ButtonRoot
-      ref={ref}
-      color={color}
+import { NavLink } from 'react-router-dom';
+const ButtonField = styled.button`
+  display: inline-block;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  ${(props) =>
+    props.variant === 'text'
+      ? 'border: 1px solid transparent;background-color: transparent;'
+      : (props) =>
+          props.variant === 'contained'
+            ? 'border: 1px solid var(--primary);background-color: var(--primary);color: var(--white);'
+            : (props) =>
+                props.variant === 'outlined'
+                  ? 'border: 1px solid var(--light);color: var(--light);background-color: transparent;'
+                  : ''}
+  ${(props) =>
+    props.color === 'primary'
+      ? 'color: var(--primary);'
+      : props.color === 'success'
+      ? 'color: var(--success);'
+      : ''}
+  ${(props) =>
+    props.variant === 'contained' && props.color === 'primary'
+      ? 'background-color: var(--primary);color: var(--white);'
+      : props.variant === 'contained' && props.color === 'success'
+      ? 'background-color: var(--success);color: var(--white);'
+      : ''}
+  ${(props) => (props.disabled ? 'cursor: no-drop;opacity: 0.5;' : '')}
+  ${(props) =>
+    props.size === 'medium'
+      ? 'padding: 8px 20px;font-size: 13px;@media screen and (max-width: 992px) {padding: 6px 8px !important;}'
+      : props.size === 'large'
+      ? 'padding: 12px 20px;font-size: 14px;'
+      : ''}
+  ${(props) =>
+    props.display === 'block'
+      ? 'margin-top: 24px;width: 100%;&:hover{background-color: var(--buttonHover);}'
+      : ''}
+`;
+const LinkRoot = styled(({ children, ...props }) => (
+  <NavLink {...props}>{children}</NavLink>
+))`
+  display: inline-block;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 1.33333;
+  ${(props) =>
+    props.variant === 'text'
+      ? 'border: 1px solid transparent;background-color: transparent;'
+      : (props) =>
+          props.variant === 'contained'
+            ? 'border: 1px solid var(--primary);background-color: var(--primary);color: var(--white);'
+            : (props) =>
+                props.variant === 'outlined'
+                  ? 'border: 1px solid var(--light);color: var(--light);background-color: transparent;'
+                  : ''}
+  ${(props) =>
+    props.color === 'primary'
+      ? 'color: var(--primary);'
+      : props.color === 'success'
+      ? 'color: var(--success);'
+      : props.color === 'icon'
+      ? 'color: var(--icon);&:hover{color:var(--primary);}'
+      : ''}
+  ${(props) =>
+    props.variant === 'contained' && props.color === 'primary'
+      ? 'background-color: var(--primary);color: var(--white);'
+      : props.variant === 'contained' && props.color === 'success'
+      ? 'background-color: var(--success);color: var(--white);'
+      : ''}
+  ${(props) => (props.disabled ? 'cursor: no-drop;opacity: 0.5;' : '')}
+  ${(props) =>
+    props.size === 'medium'
+      ? 'padding: 8px 20px;font-size: 13px;@media screen and (max-width: 992px) {padding: 6px 8px !important;}'
+      : props.size === 'large'
+      ? 'padding: 12px 20px;font-size: 14px;i{font-size: 16px}'
+      : ''}
+  ${(props) =>
+    props.display === 'block'
+      ? 'margin-top: 24px;width: 100%;&:hover{background-color: var(--buttonHover);}'
+      : ''}
+`;
+const StartIcon = styled('i')`
+  margin-right: 10px;
+`;
+const EndIcon = styled('i')`
+  margin-left: 10px;
+`;
+export default function Button({
+  variant,
+  children,
+  size = 'medium',
+  disabled = false,
+  color = 'primary',
+  display,
+  startIcon,
+  endIcon,
+  ...props
+}) {
+  return !props.to ? (
+    <ButtonField
       variant={variant}
-      fullWidth={fullWidth}
+      color={color}
       size={size}
+      display={display}
+      disabled={disabled}
       {...props}
     >
+      {startIcon ? <StartIcon className={startIcon}></StartIcon> : <></>}
       {children}
-    </ButtonRoot>
-  )
-);
-
-Button.propTypes = {
-  variant: PropTypes.oneOf(['default', 'contained', 'outlined']),
-  color: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'success',
-    'error',
-    'info',
-    'inherit',
-  ]),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  fullWidth: PropTypes.bool,
-  radius: PropTypes.number,
-};
-
-Button.defaultProps = {
-  variant: 'default',
-  color: 'primary',
-  size: 'medium',
-  fullWidth: false,
-};
-
-export default Button;
+      {endIcon ? <EndIcon className={endIcon}></EndIcon> : <></>}
+    </ButtonField>
+  ) : (
+    <LinkRoot
+      variant={variant}
+      color={color}
+      size={size}
+      display={display}
+      disabled={disabled}
+      {...props}
+    >
+      {startIcon ? <StartIcon className={startIcon}></StartIcon> : <></>}
+      {children}
+      {endIcon ? <EndIcon className={endIcon}></EndIcon> : <></>}
+    </LinkRoot>
+  );
+}
