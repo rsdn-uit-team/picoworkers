@@ -5,9 +5,12 @@ import Inputfield from 'components/InputFields/InputFields';
 import styled from '@emotion/styled';
 const DivSignup = styled.div`
   padding-top: 30px;
-  width: 35%;
+  width: 50%;
   display: block;
   margin: 0 auto;
+  @media (max-width: 1025px) {
+    width: 70%;
+  }
   @media (max-width: 767.98px) {
     width: 80%;
   }
@@ -98,7 +101,9 @@ const InputStyle = styled.div`
   width: 45%;
   display: flex;
   flex-direction: column;
-
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
   label {
     color: #a9adba;
     font-weight: 600;
@@ -110,9 +115,6 @@ const InputStyle = styled.div`
     background-color: #f5f7fa;
     & :focus {
       outline: none;
-    }
-    @media (max-width: 767.98px) {
-      width: 100%;
     }
   }
 `;
