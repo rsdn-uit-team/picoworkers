@@ -1,8 +1,90 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-
 const ButtonRoot = styled.button(
+  {
+    backgroundColor: 'transparent',
+    border: '1px solid transparent',
+    outline: 'none',
+    padding: '12px 20px',
+    color: 'var(--primary)',
+    fontSize: 14,
+    fontFamily: 'inherit',
+    transition: 'all .25s',
+    cursor: 'pointer',
+  },
+  ({ color, size, variant, fullWidth, radius, disabled }) => ({
+    width: fullWidth ? '100%' : 'auto',
+    borderRadius: radius || 0,
+    ...(variant === 'default' && {
+      ...(color === 'success' && {
+        color: 'var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+      }),
+      ...(color === 'info' && {
+        color: 'var(--blue)',
+      }),
+    }),
+    ...(variant === 'contained' && {
+      ...(color === 'primary' && {
+        backgroundColor: 'var(--primary)',
+        border: '1px solid var(--primary)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+      ...(color === 'success' && {
+        backgroundColor: 'var(--success)',
+        border: '1px solid var(--success)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+    }),
+    ...(variant === 'outlined' && {
+      border: '1px solid var(--primary)',
+      color: 'var(--primary)',
+      ...(color === 'success' && {
+        color: 'var(--success)',
+        border: '1px solid var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+        border: '1px solid var(--danger)',
+      }),
+    }),
+    ...(size === 'small' && {
+      fontSize: 12,
+      padding: '6px 8px',
+    }),
+    ...(size === 'medium' && {
+      fontSize: 13,
+      padding: '8px 20px',
+      '@media(max-width: 992px)': {
+        padding: '6px 8px',
+      },
+    }),
+    ...(size === 'large' && {
+      fontSize: 14,
+      padding: '12px 20px',
+    }),
+    ...(disabled && {
+      cursor: 'no-drop',
+      opacity: 0.5,
+    }),
+  })
+);
+
+const LinkRoot = styled(({ fullWidth, children, ...props }) => (
+  <NavLink {...props}>{children}</NavLink>
+))(
   {
     backgroundColor: 'transparent',
     border: '1px solid transparent',
@@ -13,70 +95,127 @@ const ButtonRoot = styled.button(
     transition: 'all .25s',
     cursor: 'pointer',
   },
-  ({ fullWidth, radius, variant, color }) => ({
+  ({ color, size, variant, fullWidth, radius, disabled }) => ({
+    textDecoration: 'none',
     width: fullWidth ? '100%' : 'auto',
     borderRadius: radius || 0,
-    // contained
-    ...(variant === 'contained' && {
-      ...(color === 'primary' && {
-        backgroundColor: '#22ab59',
-        border: '1px solid #22ab59',
-        ':hover': {
-          backgroundColor: '#1e964e',
-          border: '1px solid #1e964e',
-        },
-      }),
-      color: '#fff',
-      ...(color === 'success' && {
-        backgroundColor: '#15d164',
-        border: '1px solid #15d164',
-      }),
-      ...(color === 'error' && {
-        backgroundColor: 'tomato',
-        border: '1px solid tomato',
-      }),
-    }),
-    // outlined
-    ...(variant === 'outlined' && {
-      border: '1px solid #22ab59',
-      color: '#22ab59',
-      ...(color === 'success' && {
-        color: '#15d164',
-        border: '1px solid #15d164',
-      }),
-      ...(color === 'error' && {
-        color: 'tomato',
-        border: '1px solid tomato',
-      }),
-    }),
-    // default
     ...(variant === 'default' && {
       ...(color === 'success' && {
-        color: '#15d164',
+        color: 'var(--success)',
       }),
       ...(color === 'error' && {
-        color: 'tomato',
+        color: 'var(--danger)',
       }),
       ...(color === 'info' && {
-        color: 'blue',
-      })
+        color: 'var(--blue)',
+      }),
+    }),
+    ...(variant === 'contained' && {
+      ...(color === 'primary' && {
+        backgroundColor: 'var(--primary)',
+        border: '1px solid var(--primary)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+      ...(color === 'success' && {
+        backgroundColor: 'var(--success)',
+        border: '1px solid var(--success)',
+        color: 'var(--white)',
+        ':hover': {
+          backgroundColor: 'var(--buttonHover)',
+          border: '1px solid var(--buttonHover)',
+        },
+      }),
+    }),
+    ...(variant === 'outlined' && {
+      border: '1px solid var(--primary)',
+      color: 'var(--primary)',
+      ...(color === 'success' && {
+        color: 'var(--success)',
+        border: '1px solid var(--success)',
+      }),
+      ...(color === 'error' && {
+        color: 'var(--danger)',
+        border: '1px solid var(--danger)',
+      }),
+    }),
+    ...(size === 'small' && {
+      fontSize: 12,
+      padding: '6px 8px',
+    }),
+    ...(size === 'medium' && {
+      fontSize: 13,
+      padding: '8px 20px',
+      '@media(max-width: 992px)': {
+        padding: '6px 8px',
+      },
+    }),
+    ...(size === 'large' && {
+      fontSize: 14,
+      padding: '12px 20px',
+    }),
+    ...(disabled && {
+      cursor: 'no-drop',
+      opacity: 0.5,
     }),
   })
 );
-
+const StartIcon = styled('i')`
+  margin-right: 10px;
+`;
+const EndIcon = styled('i')`
+  margin-left: 10px;
+`;
 const Button = forwardRef(
-  ({ children, variant, size, color, fullWidth, ...props }, ref) => (
-    <ButtonRoot
-      ref={ref}
-      color={color}
-      variant={variant}
-      fullWidth={fullWidth}
-      size={size}
-      {...props}
-    >
-      {children}
-    </ButtonRoot>
-  )
+  (
+    {
+      variant,
+      children,
+      size,
+      disabled,
+      color,
+      fullWidth,
+      radius,
+      startIcon,
+      endIcon,
+      ...props
+    },
+    ref
+  ) =>
+    !props.to ? (
+      <ButtonRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        fullWidth={fullWidth}
+        disabled={disabled}
+        radius={radius}
+        {...props}
+      >
+        {startIcon ? <StartIcon>{startIcon}</StartIcon> : <></>}
+        {children}
+        {endIcon ? <EndIcon>{endIcon}</EndIcon> : <></>}
+      </ButtonRoot>
+    ) : (
+      <LinkRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        fullWidth={fullWidth}
+        disabled={disabled}
+        radius={radius}
+        {...props}
+      >
+        {startIcon ? <StartIcon>{startIcon}</StartIcon> : <></>}
+        {children}
+        {endIcon ? <EndIcon>{endIcon}</EndIcon> : <></>}
+      </LinkRoot>
+    )
 );
 
 Button.propTypes = {
@@ -93,12 +232,10 @@ Button.propTypes = {
   fullWidth: PropTypes.bool,
   radius: PropTypes.number,
 };
-
 Button.defaultProps = {
   variant: 'default',
   color: 'primary',
   size: 'medium',
   fullWidth: false,
 };
-
 export default Button;

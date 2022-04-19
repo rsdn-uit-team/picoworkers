@@ -16,8 +16,12 @@ export default function Demo() {
       <p>Button Outlined</p>
       <div>
         <Button variant="outlined">Default</Button>
-        <Button variant="outlined" color="success">Success</Button>
-        <Button variant="outlined" color="error">Error</Button>
+        <Button variant="outlined" color="success">
+          Success
+        </Button>
+        <Button variant="outlined" color="error">
+          Error
+        </Button>
       </div>
       <p>Button Contained</p>
       <div>
@@ -31,14 +35,13 @@ export default function Demo() {
       </div>
       <p>Button Radius</p>
       <div>
-      <Button variant="contained">
-          Error
+        <Button variant="contained">Error</Button>
+        <Button variant="contained" radius={5}>
+          Radius 5px
         </Button>
-        <Button variant="contained" radius={5}>Radius 5px</Button>
         <Button variant="contained" radius={10}>
           Radius 10px
         </Button>
-        
       </div>
     </>
   );
