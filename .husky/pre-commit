@@ -5,4 +5,4 @@ reset=`tput sgr0`
 
 echo "${green}>>>>>>>> Eslint checking...${reset}"
 
-npm run lint
+node tools/lint.js
