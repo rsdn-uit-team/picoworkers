@@ -5,11 +5,12 @@
   --colorIcon: #686d77;
   --borderIcon: rgba(0, 0, 0, 0.1);
   --borderCheckbox: #d3dae6;
-  --buttonHover: #1e964e;
+  --primaryHover: #1e964e;
   --linkHover: #005924;
   --backgroundFooter: #f5f7fa;
   --shadow: rgba(97, 44, 21, 0.19);
   --blue: #2d6eed;
+  --blueLight: #3d8bfd;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e8b8f5;
@@ -30,6 +31,7 @@
   --warning: #de9100;
   --light: #f2f4f7;
   --gray: #7f7e7e;
+  --black: #000000;
 }
 body {
   margin: 0;
