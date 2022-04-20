@@ -1,4 +1,5 @@
 import Button from 'components/Button/Button';
+import IconButton from 'components/IconButton/IconButton';
 // import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Demo() {
@@ -42,6 +43,31 @@ export default function Demo() {
         <Button variant="contained" radius={10}>
           Radius 10px
         </Button>
+      </div>
+      <p>Icon button</p>
+      <div>
+        <IconButton variant="outlined">
+          <i className="fal fa-bars"></i>
+        </IconButton>
+        <IconButton color="primary" variant="default">
+          <i className="fal fa-times"></i>
+        </IconButton>
+        <IconButton color="success" variant="outlined">
+          <i className="fal fa-times"></i>
+        </IconButton>
+        <IconButton
+          color="error"
+          variant="outlined"
+          size="large"
+          onClick={() => alert('abc')}
+          margin="ml-auto"
+          radius={5}
+        >
+          <i className="fal fa-times"></i>
+        </IconButton>
+        <IconButton color="success" variant="default" to="abc" title="link">
+          <i className="fal fa-times"></i>
+        </IconButton>
       </div>
     </>
   );
