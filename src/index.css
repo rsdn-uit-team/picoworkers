@@ -1,7 +1,7 @@
 :root {
   --default: #1b1b1b;
-  --label: #a8b0bf;
-  --input: #f5f7fa;
+  --labelDefault: #a8b0bf;
+  --inputDefault: #e8f0fe;
   --defaultIcon: #686d77;
   --borderIcon: rgba(0, 0, 0, 0.1);
   --borderCheckbox: #d3dae6;
