@@ -69,6 +69,27 @@ const LinkRoot = styled(({ children, ...props }) => (
         },
       }),
     }),
+    ...(color === 'dark' && {
+      color: 'var(--dark)',
+      ...(underline === 'hover' && {
+        ':hover': {
+          textDecoration: 'underline',
+          color: 'var(--darkHover)',
+        },
+      }),
+      ...(underline === 'always' && {
+        ':hover': {
+          textDecoration: 'underline',
+          color: 'var(--darkHover)',
+        },
+      }),
+      ...(underline === 'none' && {
+        ':hover': {
+          color: 'var(--darkHover)',
+          textDecoration: 'none',
+        },
+      }),
+    }),
   })
 );
 const Link = forwardRef(
@@ -87,7 +108,7 @@ const Link = forwardRef(
 Link.propTypes = {
   variant: PropTypes.oneOf(['default']),
   underline: PropTypes.oneOf(['none', 'hover', 'always']),
-  color: PropTypes.oneOf(['success', 'primary', 'error']),
+  color: PropTypes.oneOf(['success', 'primary', 'error', 'dark']),
 };
 Link.defaultProps = {
   variant: 'default',
