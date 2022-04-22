@@ -7,18 +7,132 @@ const StackRoot = styled.div(
     display: 'flex',
   },
   ({ direction, justifyContent, alignItems, spacing }) => ({
-    flexDirection: direction,
     justifyContent: justifyContent,
     alignItems: alignItems,
-    ...(direction === 'row' && {
-      '> :not(style) + :not(style)': {
-        marginLeft: spacing,
-      },
+    ...(typeof direction === 'string' && {
+      flexDirection: direction,
     }),
-    ...(direction === 'column' && {
-      '> :not(style) + :not(style)': {
-        marginTop: spacing,
-      },
+    ...(typeof direction === 'object' && {
+      ...(direction?.md && {
+        flexDirection: direction.md,
+      }),
+      ...(direction?.xs && {
+        '@media (max-width: 992px)': {
+          flexDirection: direction.xs,
+        },
+      }),
+    }),
+    ...(typeof spacing === 'number' && {
+      ...(typeof direction === 'string' && {
+        ...(direction === 'row' && {
+          '> :not(style) + :not(style)': {
+            marginLeft: spacing,
+            marginTop: 0,
+          },
+        }),
+        ...(direction === 'column' && {
+          '> :not(style) + :not(style)': {
+            marginLeft: 0,
+            marginTop: spacing,
+          },
+        }),
+      }),
+      ...(typeof direction === 'object' && {
+        ...(direction?.md === 'row' && {
+          flexDirection: direction.md,
+          '> :not(style) + :not(style)': {
+            marginLeft: spacing,
+            marginTop: 0,
+          },
+        }),
+        ...(direction?.md === 'column' && {
+          flexDirection: direction.md,
+          '> :not(style) + :not(style)': {
+            marginLeft: 0,
+            marginTop: spacing,
+          },
+        }),
+        ...(direction?.xs === 'row' && {
+          '@media screen and (max-width: 992px)': {
+            flexDirection: direction.xs,
+            '> :not(style) + :not(style)': {
+              marginLeft: spacing,
+              marginTop: 0,
+            },
+          },
+        }),
+        ...(direction?.xs === 'column' && {
+          '@media screen and (max-width: 992px)': {
+            flexDirection: direction.xs,
+            '> :not(style) + :not(style)': {
+              marginLeft: 0,
+              marginTop: spacing,
+            },
+          },
+        }),
+      }),
+    }),
+    ...(typeof spacing === 'object' && {
+      ...(typeof direction === 'string' && {
+        ...(direction === 'row' && {
+          '> :not(style) + :not(style)': {
+            marginLeft: spacing.md,
+            marginTop: 0,
+          },
+          '@media screen and (max-width: 992px)': {
+            '> :not(style) + :not(style)': {
+              marginLeft: spacing.xs,
+              marginTop: 0,
+            },
+          },
+        }),
+        ...(direction === 'column' && {
+          '> :not(style) + :not(style)': {
+            marginLeft: 0,
+            marginTop: spacing.md,
+          },
+          '@media screen and (max-width: 992px)': {
+            '> :not(style) + :not(style)': {
+              marginLeft: 0,
+              marginTop: spacing.xs,
+            },
+          },
+        }),
+      }),
+      ...(typeof direction === 'object' && {
+        ...(direction?.md === 'row' && {
+          flexDirection: direction.md,
+          '> :not(style) + :not(style)': {
+            marginLeft: spacing.md,
+            marginTop: 0,
+          },
+        }),
+        ...(direction?.md === 'column' && {
+          flexDirection: direction.md,
+          '> :not(style) + :not(style)': {
+            marginLeft: 0,
+            marginTop: spacing.md,
+          },
+        }),
+        ...(direction?.xs === 'row' && {
+          '@media screen and (max-width: 992px)': {
+            flexDirection: direction.xs,
+            '> :not(style) + :not(style)': {
+              marginLeft: spacing.xs,
+              marginTop: 0,
+            },
+          },
+        }),
+        ...(direction?.xs === 'column' && {
+          '@media screen and (max-width: 992px)': {
+            flexDirection: direction.xs,
+            '> :not(style) + :not(style)': {
+              marginLeft: 0,
+              marginTop: spacing.xs,
+            },
+          },
+        }),
+      }),
     }),
   })
 );
@@ -32,13 +146,33 @@ const Stack = forwardRef(({ children, direction, ...props }, ref) => {
 });
 
 Stack.propTypes = {
-  direction: PropTypes.oneOf([
-    'row',
-    'column',
-    'row-reverse',
-    'column-reverse',
-    'initial',
-    'inherit',
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'row',
+      'column',
+      'row-reverse',
+      'column-reverse',
+      'initial',
+      'inherit',
+    ]),
+    PropTypes.shape({
+      md: PropTypes.oneOf([
+        'row',
+        'column',
+        'row-reverse',
+        'column-reverse',
+        'initial',
+        'inherit',
+      ]),
+      xs: PropTypes.oneOf([
+        'row',
+        'column',
+        'row-reverse',
+        'column-reverse',
+        'initial',
+        'inherit',
+      ]),
+    }),
   ]),
   justifyContent: PropTypes.oneOf([
     'flex-start',
@@ -60,7 +194,13 @@ Stack.propTypes = {
     'initial',
     'inherit',
   ]),
-  spacing: PropTypes.number,
+  spacing: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      md: PropTypes.number,
+      xs: PropTypes.number,
+    }),
+  ]),
 };
 
 Stack.defaultProps = {
