@@ -78,11 +78,10 @@ const ButtonClose = styled.div({
 const Drawer = forwardRef(
   ({ anchor, open, onClose, children, backdrop, ...props }, ref) => {
     return (
-      <>
+      <div {...props}>
         {open && (
           <DrawerWrapper
             backdrop={backdrop}
-            {...props}
             ref={ref}
             onClick={onClose}
           ></DrawerWrapper>
@@ -95,7 +94,7 @@ const Drawer = forwardRef(
           </ButtonClose>
           <div>{children}</div>
         </DrawerRoot>
-      </>
+      </div>
     );
   }
 );
