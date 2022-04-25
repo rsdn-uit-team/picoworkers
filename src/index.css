@@ -2,7 +2,7 @@
   --default: #1b1b1b;
   --labelDefault: #a8b0bf;
   --inputDefault: #e8f0fe;
-  --defaultIcon: #686d77;
+  --defaultIcon: rgba(0, 0, 0, 0.5);
   --borderIcon: rgba(0, 0, 0, 0.1);
   --borderCheckbox: #d3dae6;
   --primaryHover: #1e964e;

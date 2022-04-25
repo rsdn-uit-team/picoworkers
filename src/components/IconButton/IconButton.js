@@ -111,9 +111,10 @@ const IconButtonRoot = styled.button(
       }),
     }),
     ...(variant === 'outlined' && {
-      border: '1px solid var(--defaultIcon)',
+      border: '1px solid var(--borderIcon)',
       ':hover': {
-        border: '1px solid var(--primary)',
+        border: '1px solid var(--borderIcon)',
+        color: 'var(--defaultIcon)',
       },
       ...(color === 'success' && {
         color: 'var(--success)',
