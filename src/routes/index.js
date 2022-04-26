@@ -1,19 +1,20 @@
-import DemoLayout from 'layouts/DemoLayout';
+import Default from 'layouts/Default';
+import Login from 'pages/Login/Login';
 import React from 'react';
 import { BrowserRouter, Routes as Router, Route } from 'react-router-dom';
 
 const Routes = () => (
   <BrowserRouter>
     <Router>
-      <Route path="/" element={<DemoLayout />}>
-        {/* <Route
-          path="/"
+      <Route path="/" element={<Default />}>
+        <Route
+          path="/login"
           element={
             <React.Suspense>
-              <Demo />
+              <Login />
             </React.Suspense>
           }
-        ></Route> */}
+        ></Route>
       </Route>
     </Router>
   </BrowserRouter>
