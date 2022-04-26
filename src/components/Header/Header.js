@@ -11,8 +11,11 @@ import { useState } from 'react';
 const WrapperRoot = styled.div({
   maxWidth: 1086,
   boxSizing: 'border-box',
-  padding: '31x 20px',
+  padding: '31px 20px',
   margin: 'auto',
+  '@media (max-width: 992px)': {
+    padding: '20px 20px',
+  },
 });
 const MenuItemWrapper = styled.span({
   position: 'relative',
@@ -105,7 +108,7 @@ const Header = () => {
         <Stack
           direction={{ md: 'row', xs: 'row' }}
           alignItems="center"
-          spacing={{ md: 20, xs: 10 }}
+          spacing={20}
         >
           <Button onClick={() => navigate('/login')}>Log In</Button>
           <ButtonSignup
@@ -120,7 +123,7 @@ const Header = () => {
             variant="outlined"
             onClick={() => setOpenDrawer(!openDrawer)}
           >
-            <Icon.Menu width={18} height={18} viewBox="0 0 24 24" />
+            <Icon.Menu width={22} height={22} viewBox="0 0 24 24" />
           </IconDrawer>
         </Stack>
       </Stack>
