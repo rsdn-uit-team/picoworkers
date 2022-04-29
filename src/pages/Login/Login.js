@@ -1,12 +1,17 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import * as Icon from 'react-feather';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from 'components/Input/Input';
 import Stack from 'components/Stack/Stack';
 import CheckBox from 'components/CheckBox/CheckBox';
 import Link from 'components/Link/Link';
 import Button from 'components/Button/Button';
+import { cancelError, disableButtonLogin, login } from 'actions/login.action';
+import IconButton from 'components/IconButton/IconButton';
+import { controller } from 'services/index';
 
 const LoginWrapper = styled.div({
   maxWidth: 1086,
@@ -46,8 +51,39 @@ const Text = styled.p({
   marginTop: 16,
   marginBottom: 16,
 });
+const Error = styled(Stack)({
+  fontSize: 16,
+  lineHeight: '34px',
+  position: 'absolute',
+  top: 80,
+  left: 0,
+  width: '100%',
+  boxSizing: 'border-box',
+  padding: '8px 20px',
+  color: 'var(--error)',
+  backgroundColor: 'var(--backgroundError)',
+});
+const IconError = styled(IconButton)({
+  ':hover': {
+    color: 'var(--defaultIcon)',
+  },
+});
 const Login = forwardRef(({ ...props }, ref) => {
-  const [isDisabled, setIsDisabled] = useState(false);
+  const isDisabled = useSelector((state) => state.login.isDisabled);
+  const error = useSelector((state) => state.login.error);
+  const token = useSelector((state) => state.login.token);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+  }, [token]);
+  useEffect(() => {
+    return () => {
+      dispatch(disableButtonLogin(false));
+      controller.abort();
+    };
+  }, [dispatch]);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -74,11 +110,28 @@ const Login = forwardRef(({ ...props }, ref) => {
         .required('Required!'),
     }),
     onSubmit: (values) => {
-      setIsDisabled(true);
+      dispatch(login(values));
     },
   });
   return (
     <LoginWrapper {...props} ref={ref}>
+      {error !== null && (
+        <Error
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <span>{error}</span>
+          <IconError
+            size="small"
+            onClick={() => {
+              dispatch(cancelError(null));
+            }}
+          >
+            <Icon.X width={14} height={14} />
+          </IconError>
+        </Error>
+      )}
       <LoginForm onSubmit={formik.handleSubmit}>
         <Title>Login</Title>
         <InputWrapper>
@@ -87,6 +140,7 @@ const Login = forwardRef(({ ...props }, ref) => {
             name="email"
             id="email"
             label="Email"
+            placeholder="Type your response here"
             onChange={formik.handleChange}
             error={formik.errors.email}
             touched={formik.touched.email}
@@ -99,6 +153,7 @@ const Login = forwardRef(({ ...props }, ref) => {
             name="password"
             id="password"
             label="Password"
+            placeholder="Type your response here"
             onChange={formik.handleChange}
             error={formik.errors.password}
             touched={formik.touched.password}

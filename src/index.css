@@ -35,6 +35,8 @@
   --light: #f2f4f7;
   --gray: #7f7e7e;
   --black: #000000;
+  --error: #721c24;
+  --backgroundError: #F8D7D7;
 }
 body {
   margin: 0;
