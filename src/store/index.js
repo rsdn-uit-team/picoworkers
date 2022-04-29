@@ -1,13 +1,9 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import breadcrumbsReducer from 'reducers/breadCrumbReducer'
-import { projectApi } from 'services/project'
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from 'reducers/index';
+import rootSage from 'sagas';
 
-const rootReducer = combineReducers({
-  breadcrumbs: breadcrumbsReducer,
-  [projectApi.reducerPath]: projectApi.reducer,
-})
-
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectApi.middleware)
-})
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSage);
+export default store;
