@@ -11,7 +11,6 @@ import Link from 'components/Link/Link';
 import Button from 'components/Button/Button';
 import { cancelError, disableButtonLogin, login } from 'actions/login.action';
 import IconButton from 'components/IconButton/IconButton';
-import { controller } from 'services/index';
 
 const LoginWrapper = styled.div({
   maxWidth: 1086,
@@ -81,7 +80,6 @@ const Login = forwardRef(({ ...props }, ref) => {
   useEffect(() => {
     return () => {
       dispatch(disableButtonLogin(false));
-      controller.abort();
     };
   }, [dispatch]);
   const formik = useFormik({
