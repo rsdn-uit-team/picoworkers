@@ -31,7 +31,7 @@ const DrawerRoot = styled.div(
     flexDirection: 'column',
     backgroundColor: 'var(--white)',
     boxShadow: '0 8px 20px 0 var(--shadow)',
-    transition: '0.5s all ease-in-out',
+    transition: '0.25s all ease-in-out',
   },
   ({ anchor, open }) => ({
     ...(anchor === 'left' && {
@@ -78,15 +78,11 @@ const ButtonClose = styled.div({
 const Drawer = forwardRef(
   ({ anchor, open, onClose, children, backdrop, ...props }, ref) => {
     return (
-      <div {...props}>
+      <div {...props} ref={ref}>
         {open && (
-          <DrawerWrapper
-            backdrop={backdrop}
-            ref={ref}
-            onClick={onClose}
-          ></DrawerWrapper>
+          <DrawerWrapper backdrop={backdrop} onClick={onClose}></DrawerWrapper>
         )}
-        <DrawerRoot className="drawer-root" anchor={anchor} open={open}>
+        <DrawerRoot anchor={anchor} open={open}>
           <ButtonClose>
             <IconButton onClick={onClose} size="large">
               <Icon.X />
