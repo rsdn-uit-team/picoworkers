@@ -56,9 +56,9 @@ const InputRoot = styled.input(
 );
 const LabelRoot = styled.label({
   cursor: 'pointer',
-  lineHeight: '20px',
+  lineHeight: '16px',
 });
-const Checked = styled(Check)(
+const Checked = styled(({ size, ...props }) => <Check {...props} />)(
   {
     display: 'none',
     position: 'absolute',
