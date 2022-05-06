@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import Stack from 'components/Stack/Stack';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
+import { Check } from 'react-feather';
 
 const RadioWrapper = styled(Stack)({
   display: 'inline-flex',
@@ -15,19 +16,16 @@ const InputRoot = styled.input(
     cursor: 'pointer',
     MozAppearance: 'none',
     WebkitAppearance: 'none',
+    boxSizing: 'border-box',
     OAppearance: 'none',
     borderRadius: '50%',
     border: '1px solid var(--success)',
+    marginRight: 10,
     ':checked': {
-      background: 'url(./assets/images/radio-checked.svg) no-repeat center',
       backgroundColor: 'var(--success)',
     },
   },
-  ({ labelPlacement, color, size }) => ({
-    ...(labelPlacement === 'top' && { marginTop: 10 }),
-    ...(labelPlacement === 'bottom' && { marginBottom: 10 }),
-    ...(labelPlacement === 'start' && { marginLeft: 10 }),
-    ...(labelPlacement === 'end' && { marginRight: 10 }),
+  ({ color, size }) => ({
     ...(color === 'primary' && {
       border: '1px solid var(--primary)',
       ':checked': {
@@ -58,48 +56,51 @@ const InputRoot = styled.input(
 );
 const LabelRoot = styled.label({
   cursor: 'pointer',
+  lineHeight: '20px',
 });
+const Checked = styled(Check)(
+  {
+    display: 'none',
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    transform: 'translate(-50%, -50%)',
+    color: 'var(--white)',
+    width: 14,
+    height: 14,
+    'input:checked + &': {
+      display: 'block',
+    },
+  },
+  ({ size }) => ({
+    ...(size === 'small' && { left: 8, top: 8, width: 10, height: 10 }),
+    ...(size === 'large' && { left: 13, top: 13, width: 18, height: 18 }),
+  })
+);
 const Radio = forwardRef(
-  (
-    { labelPlacement, color, size, label, checked, onChange, ...props },
-    ref
-  ) => {
+  ({ color, size, label, checked, onChange, ...props }, ref) => {
     return (
-      <RadioWrapper
-        direction={
-          labelPlacement === 'top'
-            ? 'column-reverse'
-            : labelPlacement === 'bottom'
-            ? 'column'
-            : labelPlacement === 'start'
-            ? 'row-reverse'
-            : 'row'
-        }
-        alignItems="center"
-        ref={ref}
-      >
+      <RadioWrapper direction="row" alignItems="center" ref={ref}>
         <InputRoot
           type="radio"
-          labelPlacement={labelPlacement}
           size={size}
           color={color}
           checked={checked}
           onChange={onChange}
           {...props}
         />
+        <Checked strokeWidth="4" size={size} />
         <LabelRoot htmlFor={props.id}>{label}</LabelRoot>
       </RadioWrapper>
     );
   }
 );
 Radio.propTypes = {
-  labelPlacement: PropTypes.oneOf(['top', 'bottom', 'start', 'end']),
   label: PropTypes.string,
   color: PropTypes.oneOf(['primary', 'success', 'error', 'info']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 Radio.defaultProps = {
-  labelPlacement: 'end',
   label: 'label',
   color: 'success',
   size: 'medium',
