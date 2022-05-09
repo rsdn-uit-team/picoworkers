@@ -25,8 +25,9 @@ const InputRoot = styled.input(
     fontFamily: 'inherit',
     backgroundColor: 'var(--inputDefault);',
   },
-  ({ variant, color, focused, radius }) => ({
+  ({ variant, color, focused, radius, error, touched }) => ({
     borderRadius: radius || 0,
+    ...(error && touched && { border: '1px solid var(--danger) !important' }),
     ...(variant === 'default' && {
       ...(focused && {
         ':focus': {
@@ -123,6 +124,8 @@ const Input = forwardRef(
         color={color}
         radius={radius}
         focused={focused}
+        error={error}
+        touched={touched}
         {...props}
         ref={ref}
       />
@@ -137,11 +140,14 @@ Input.propTypes = {
   label: PropTypes.string,
   radius: PropTypes.number,
   focused: PropTypes.bool,
+  error: PropTypes.string,
+  touched: PropTypes.bool,
 };
 Input.defaultProps = {
   variant: 'default',
   color: 'default',
   border: 'none',
-  focused: false,
+  error: null,
+  touched: false,
 };
 export default Input;
