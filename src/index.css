@@ -12,7 +12,7 @@
   --shadowOption: rgb(97 44 21 / 19%);
   --backdropDefault: rgba(0, 0, 0, 0.5);
   --blue: #2d6eed;
-  --blueLight: #3d8bfd;
+  --blueLight: rgba(25, 118, 210, 0.5);
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e8b8f5;
@@ -26,12 +26,15 @@
   --gray-dark: #343a40;
   --secondary: #686d77;
   --danger: #e63e46;
+  --dangerLight: #ff8484;
   --dark: #203259;
   --darkHover: rgba(0,0,0,0.7);
   --primary: #22ab59;
   --success: #15d164;
+  --successLight: #cff6df;
   --info: #17a2b8;
   --warning: #de9100;
+  --warningLight: #714a00;
   --light: #f2f4f7;
   --gray: #7f7e7e;
   --black: #000000;
