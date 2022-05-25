@@ -3,7 +3,8 @@ import {
   LOGIN,
   LOGIN_FAILED,
   LOGIN_SUCCESS,
-} from 'actions/login.action';
+  LOGOUT,
+} from 'actions/auth.action';
 
 const initialState = {
   token: localStorage.getItem('token') || null,
@@ -11,7 +12,7 @@ const initialState = {
   isDisabled: false,
 };
 
-const LoginReducer = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -19,6 +20,7 @@ const LoginReducer = (state = initialState, action) => {
         isDisabled: true,
       };
     case LOGIN_SUCCESS:
+      localStorage.setItem('token', action.payload);
       return {
         ...state,
         token: action.payload,
@@ -36,8 +38,14 @@ const LoginReducer = (state = initialState, action) => {
         ...state,
         isDisabled: action.payload,
       };
+    case LOGOUT:
+      return {
+        ...state,
+        token: null,
+        isDisabled: false,
+      }
     default:
       return state;
   }
 };
-export default LoginReducer;
+export default AuthReducer;

@@ -114,18 +114,18 @@ const Signup = forwardRef(({ ...props }, ref) => {
   }, [dispatch]);
   const formik = useFormik({
     initialValues: {
-      realName: '',
+      fullName: '',
+      username: '',
       email: '',
       password: '',
       confirmPassword: '',
-      nickName: '',
-      country: '',
-      profileType: 'worker',
+      region: '',
+      role: 'WORKER',
       termsOfService: false,
       eventAndOffer: false,
     },
     validationSchema: Yup.object({
-      realName: Yup.string()
+      fullName: Yup.string()
         .matches(
           /^[a-zA-Z0-9 ]+$/,
           'RealName can only contain strings, numbers and spaces'
@@ -151,13 +151,13 @@ const Signup = forwardRef(({ ...props }, ref) => {
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('required!'),
-      nickName: Yup.string()
+      username: Yup.string()
         .matches(
           /^[a-zA-Z0-9_-]+$/,
-          'RealName can only contain strings, numbers, "_ , -"'
+          'Nickname can only contain strings, numbers, "_ , -"'
         )
         .required('Required!'),
-      country: Yup.string().required('Required!'),
+      region: Yup.string().required('Required!'),
       termsOfService: Yup.boolean().oneOf(
         [true],
         'You need to accept the Terms of Service'
@@ -199,13 +199,13 @@ const Signup = forwardRef(({ ...props }, ref) => {
           <InputWrapper>
             <Input
               type="text"
-              name="realName"
+              name="fullName"
               id="real-name"
               label="Real name (for internal verific. only)"
               placeholder="Type your response here"
               onChange={formik.handleChange}
-              error={formik.errors.realName}
-              touched={formik.touched.realName}
+              error={formik.errors.fullName}
+              touched={formik.touched.fullName}
               focused
             />
           </InputWrapper>
@@ -261,24 +261,24 @@ const Signup = forwardRef(({ ...props }, ref) => {
           <InputWrapper>
             <Input
               type="text"
-              name="nickName"
+              name="username"
               id="nick-name"
               label="Nickname"
               placeholder="Type your response here"
               onChange={formik.handleChange}
-              error={formik.errors.nickName}
-              touched={formik.touched.nickName}
+              error={formik.errors.username}
+              touched={formik.touched.username}
               focused
             />
           </InputWrapper>
           <InputWrapper>
             <Select
-              value={formik.values.country}
-              name="country"
+              value={formik.values.region}
+              name="region"
               label="Select Country"
               placeholder="Select Country"
-              error={formik.errors.country}
-              touched={formik.touched.country}
+              error={formik.errors.region}
+              touched={formik.touched.region}
               onSearch={(e) => {
                 setFilter(e.target.value);
               }}
@@ -289,11 +289,11 @@ const Signup = forwardRef(({ ...props }, ref) => {
                 listFilter.map((item, index) => (
                   <OptionItem
                     onClick={() => {
-                      formik.setFieldValue('country', item.name, true);
+                      formik.setFieldValue('region', item.name, true);
                     }}
                     key={index}
                   >
-                    {item.name === formik.values.country ? (
+                    {item.name === formik.values.region ? (
                       <Selected>{item.name}</Selected>
                     ) : (
                       item.name
@@ -319,18 +319,18 @@ const Signup = forwardRef(({ ...props }, ref) => {
           <Stack spacing={10}>
             <Radio
               id="worker"
-              value="worker"
+              value="WORKER"
               name="profileType"
               label="I'm a Worker"
-              checked={formik.values.profileType === 'worker'}
+              checked={formik.values.role === 'WORKER'}
               onChange={formik.handleChange}
             />
             <Radio
               id="employer"
-              value="employer"
+              value="EMPLOYER"
               name="profileType"
               label="I'm an Employer"
-              checked={formik.values.profileType === 'employer'}
+              checked={formik.values.role === 'EMPLOYER'}
               onChange={formik.handleChange}
             />
           </Stack>

@@ -1,4 +1,4 @@
-import { action } from './common.action';
+import { action } from './index.action';
 
 export const SIGNUP = 'SIGNUP';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
