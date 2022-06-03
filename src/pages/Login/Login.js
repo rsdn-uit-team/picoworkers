@@ -9,8 +9,9 @@ import Stack from 'components/Stack/Stack';
 import CheckBox from 'components/CheckBox/CheckBox';
 import Link from 'components/Link/Link';
 import Button from 'components/Button/Button';
-import { cancelError, disableButtonLogin, login } from 'actions/login.action';
+import { cancelError, disableButtonLogin, login } from 'actions/auth.action';
 import IconButton from 'components/IconButton/IconButton';
+import { useNavigate } from 'react-router-dom';
 
 const LoginWrapper = styled.div({
   maxWidth: 1086,
@@ -68,15 +69,10 @@ const IconError = styled(IconButton)({
   },
 });
 const Login = forwardRef(({ ...props }, ref) => {
-  const isDisabled = useSelector((state) => state.login.isDisabled);
-  const error = useSelector((state) => state.login.error);
-  const token = useSelector((state) => state.login.token);
+  const isDisabled = useSelector((state) => state.auth.isDisabled);
+  const error = useSelector((state) => state.auth.error);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem('token', token);
-    }
-  }, [token]);
+  const navigate = useNavigate();
   useEffect(() => {
     return () => {
       dispatch(disableButtonLogin(false));
@@ -108,6 +104,7 @@ const Login = forwardRef(({ ...props }, ref) => {
         .required('Required!'),
     }),
     onSubmit: (values) => {
+      navigate('../jobs', { replace: true })
       dispatch(login(values));
     },
   });

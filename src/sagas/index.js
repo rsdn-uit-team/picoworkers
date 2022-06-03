@@ -1,4 +1,4 @@
-import { LOGIN } from 'actions/login.action';
+import { LOGIN } from 'actions/auth.action';
 import { SIGNUP } from 'actions/signup.action';
 import { takeLatest } from 'redux-saga/effects';
 import { loginSaga } from './login.saga';

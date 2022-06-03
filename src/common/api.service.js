@@ -1,4 +1,6 @@
 import axios from 'axios';
+import store from 'store';
+import { setLoading } from 'actions/common.action';
 
 const apiService = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -9,6 +11,9 @@ const apiService = axios.create({
 });
 
 apiService.interceptors.request.use((config) => {
+  if (!config.notLoading) {
+    store.dispatch(setLoading(true));
+  }
   return config;
 });
 

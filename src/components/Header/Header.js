@@ -7,6 +7,8 @@ import Button from 'components/Button/Button';
 import Drawer from 'components/Drawer/Drawer';
 import IconButton from 'components/IconButton/IconButton';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from 'actions/auth.action';
 
 const WrapperRoot = styled.div({
   maxWidth: 1086,
@@ -76,6 +78,12 @@ const DrawerChildren = styled(Stack)({
 const Header = () => {
   const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = useState(false);
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    dispatch(logout())
+    navigate('login');
+  }
   return (
     <WrapperRoot>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -125,6 +133,7 @@ const Header = () => {
           >
             <Icon.Menu width={22} height={22} viewBox="0 0 24 24" />
           </IconDrawer>
+          <Button onClick={handleLogout}>Logout</Button>
         </Stack>
       </Stack>
       <DrawerRoot
